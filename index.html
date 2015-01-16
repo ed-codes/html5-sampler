@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5 Sampler</title>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- <audio id="track" >
+	<source src="biggie.mp3" type='audio/mpeg; codecs="mp3"'>
+</audio> -->
+
+
+<button class="play">Play</button> 
+<button class="pause">Pause</button>
+
+<br />
+
+<button class="play1">Play1</button>
+<button class="play2">Play2</button>
+
+<button class="play3">Play3</button>
+<button class="play4">Play4</button>
+
+<button class="play5">Play5</button>
+<button class="play6">Play6</button>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	var audio = new Audio();
+	var endTime;
+
+
+	audio.src = "biggie.mp3";
+
+	audio.addEventListener('loadedmetadata', function() {
+		console.log("Playing " + audio.src + ", for: " + audio.duration + "seconds.");
+		// audio.play();
+
+		console.log(audio.buffered);
+	});
+
+	// var audio = document.getElementById('track');
+
+	$('.play').on('click', function(){
+		audio.play();
+	})
+
+	$('.play1').on('click', function(){
+		playSegment(0.0, 0.5);
+	})
+
+	$('.play2').on('click', function(){
+		playSegment(5.2, 8.0);
+	})
+
+	$('.play3').on('click', function(){
+		playSegment(15.2, 18.0);
+	})
+
+	$('.play4').on('click', function(){
+		playSegment(40.2, 56.0);
+	})
+
+	$('.play5').on('click', function(){
+		playSegment(60.2, 68.0);
+	})
+
+	$('.play6').on('click', function(){
+		playSegment(25.2, 28.0);
+	})
+
+	$('.pause').on('click', function(){
+		audio.pause();
+	})
+
+
+
+	function playSegment(startTime, end){
+		endTime = end
+		audio.currentTime = startTime;
+		audio.play();
+	}
+
+
+	audio.addEventListener('timeupdate', function (){
+		if ( audio.currentTime >= endTime) {
+			audio.pause();
+		}
+		console.log(audio.currentTime);
+		// console.log(endTime);
+	}, false);
+
+});
+</script>
+
+</body>
+</html>
