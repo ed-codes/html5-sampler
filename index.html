@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="app/css/main.css">
     <link rel="stylesheet" href="app/css/slider.css">
 
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 </head>
 <body ng-app="html5Sampler">
 <!--[if lt IE 7]>
@@ -39,7 +41,7 @@
         <ul>
             <li ng-repeat="track in tracksList">
                 <p>{{ track.name }}</p>
-                <slider floor="10" ceiling="60" ng-model-low="track.start" ng-model-high="track.end"></slider>
+                <slider floor="0" ceiling="{{ track.duration }}" ng-model-low="track.start" ng-model-high="track.end"></slider>
                 <button ng-click="remove(track)">Remove</button>
             </li>
         </ul>
